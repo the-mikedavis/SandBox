@@ -2,6 +2,8 @@ import java.util.Scanner;
 public class MultipleObjectThreads implements Runnable{
     private int objectNumber;
     public static void main(String[] args){
+        int maxObjects = 3000;
+
         int nObjects;
         try{
             nObjects = Integer.parseInt(args[0]);
@@ -9,8 +11,9 @@ public class MultipleObjectThreads implements Runnable{
             nObjects = 0;
         }
         Scanner console = new Scanner(System.in);
-        while (nObjects < 1 || nObjects > 96){
-            System.out.print("How many objects? (Please enter a number between 1 and 30): ");
+        while (nObjects < 1 || nObjects > maxObjects){
+            System.out.print(
+"How many objects? (Please enter a number between 1 and "+maxObjects+"): ");
             try{
                 nObjects = console.nextInt();
             } catch (NumberFormatException e){
@@ -35,7 +38,7 @@ public class MultipleObjectThreads implements Runnable{
 
     @Override
     public void run(){
-        System.out.printf("Object %3d is running on thread ID: %3d%n",
+        System.out.printf("Object %4d is running on thread ID: %4d%n",
             this.getObjectNumber(), Thread.currentThread().getId());
     }
 
