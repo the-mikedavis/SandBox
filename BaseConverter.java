@@ -32,7 +32,7 @@ public class BaseConverter{
 		int digit;
 		while(baseTen > 0){
 			digit = baseTen % newBase;
-			newNumber = ((digit >= 10) ? ""+(digit+'7') : digit) + newNumber;
+			newNumber = ((digit >= 10) ? ""+(char)(digit+'7') : digit) + newNumber;
 			baseTen /= newBase;
 		}
 		return newNumber;
