@@ -48,3 +48,5 @@ g.append('text')
     .attr('dy', '0.35em')
     .attr('stroke', '#fff')
     .attr('fill', '#fff');
+
+var circles = d3.map(50).each(d => d.radius = 5);

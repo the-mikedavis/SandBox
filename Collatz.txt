@@ -1,0 +1,1 @@
+Make a tree with objects. Class with Long (L) number, node left, node right. Private class inside the solver. Have a root node and a queue of currents. Consider a set to hold all the numbers covered (Hashset).
