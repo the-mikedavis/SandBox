@@ -8,11 +8,11 @@ hello world script and some command line operations.
 
 ### Languages to Try:
 
-[x] C
-[x] Python
-[x] Shell
-[x] Ruby
-[x] Go
-[x] Brainfuck
-[ ] Swift
-[ ] Scala
+- [x] C
+- [x] Python
+- [x] Shell
+- [x] Ruby
+- [x] Go
+- [x] Brainfuck
+- [ ] Swift
+- [ ] Scala
