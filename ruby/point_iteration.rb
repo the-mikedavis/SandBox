@@ -10,5 +10,4 @@ end
 
 ARGV.each do |no|
     iterate no.to_i
-    puts
 end
