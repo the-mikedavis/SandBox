@@ -42,6 +42,11 @@
   (map :name
     (filter #(>= (:glitter-index %) minimum-glitter) records)))
 
+(defn append
+  "Append a new record to the suspect list"
+  [new-name new-glitter records]
+  (into records (mapify (list (vector new-name new-glitter)))))
+
 (defn csv-stringify
   "Converts the map back to a csv string"
   [records]
