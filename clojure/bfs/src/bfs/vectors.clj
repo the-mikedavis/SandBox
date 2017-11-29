@@ -55,3 +55,30 @@
             (assoc acc k (- v (k vector-b))))
           {}
           vector-a))
+
+; also, you can test equality with:
+; (= <vector-a> <vector-b>)
+
+; the 5 essential actions:
+(def actions
+  (list (make 1 0 1)
+        (make 2 0 1)
+        (make 0 1 1)
+        (make 0 2 1)
+        (make 1 1 1)))
+
+(defn- add-or-sub
+  "Add or subtract depending on the boat position of the first vector"
+  [vector-a vector-b]
+  (if (= (:b vector-a) 0)
+    (add vector-a vector-b)
+    (sub vector-a vector-b)))
+
+(defn get-actions
+  "Get the possible actions available to a vector"
+  [vector]
+  (filter valid?
+          (reduce (fn [acc v]
+                    (conj acc (add-or-sub vector v)))
+                  '()
+                  actions)))
