@@ -1,4 +1,4 @@
-(ns chapter-five)
+(ns implementations)
 
 (defn my-comp
   "My implementation of the comp function"
