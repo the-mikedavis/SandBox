@@ -40,6 +40,13 @@
   (and (loose-valid? vector)
        (loose-valid? (converse vector))))
 
+(defn goal?
+  "Checks if a vector is the goal: <0,0,0>"
+  [vector]
+  (and (= (:m vector) 0)
+       (= (:c vector) 0)
+       (= (:b vector) 0)))
+
 (defn add
   "Computes the sum of two vectors"
   [vector-a vector-b]
