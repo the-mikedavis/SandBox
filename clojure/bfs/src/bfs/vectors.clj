@@ -8,6 +8,17 @@
             :c cannibals
             :b boat))
 
+(defn stringify
+  "Convert the vector to string form"
+  [vector]
+  (str "<"
+       (:m vector)
+       ","
+       (:c vector)
+       ","
+       (:b vector)
+       ">"))
+
 ; the conversion functions used to generate a converse vector
 (def converse-fcns
   (hash-map :m #(- 3 %)
