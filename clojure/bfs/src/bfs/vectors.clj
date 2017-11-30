@@ -19,11 +19,26 @@
        (:b vector)
        ">"))
 
+(defn path-trace
+  "Get the path of a vector from its parents recursively"
+  [vector]
+  (loop [vect vector
+         ls (list vector)]
+    (if (not (contains? vect :parent))
+      ls
+      (recur (get vect :parent) (conj ls (get vect :parent))))))
+
 ; the conversion functions used to generate a converse vector
 (def converse-fcns
   (hash-map :m #(- 3 %)
             :c #(- 3 %)
             :b #(- 1 %)))
+
+(defn stringify-path
+  "Convert a vector's path to string, separated by new-lines"
+  [vector]
+  (clojure.string/join "\n" (map stringify
+                                 (path-trace vector))))
 
 (defn ^:dynamic converse
   "Generates the converse of a vector"
