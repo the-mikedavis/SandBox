@@ -60,12 +60,6 @@
        (= (:c vector) 0)
        (= (:b vector) 0)))
 
-;(defn backtracks?
-  ;[vector]
-  ;(and (contains? vector :parent)
-       ;(contains? (get vector :parent) :parent)
-       ;(equals? vector (get (get vector :parent) :parent))))
-
 (defn backtracks?
   [vector]
   (loop [vect vector]
