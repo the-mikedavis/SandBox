@@ -2,11 +2,13 @@
   (:require [bfs.vectors :as vectors])
   (:gen-class))
 
-(defn solve
+(defn ^:dynamic solve
   [vect]
   (println "Starting the solver at the specified vector")
   (loop [queue [vect]
          iteration 0]
+    ;(println (count queue))
+    ;(println (first queue))
     (if (vectors/goal? (first queue))
       {:node (first queue) :iter iteration}
       (let [[part & remaining] queue]

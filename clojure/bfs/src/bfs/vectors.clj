@@ -25,11 +25,13 @@
             :c #(- 3 %)
             :b #(- 1 %)))
 
-(defn converse
+(defn ^:dynamic converse
   "Generates the converse of a vector"
   [vector]
   (reduce (fn [acc [k v]]
-            (assoc acc k ((k converse-fcns) v)))
+            (if (contains? converse-fcns k)
+              (assoc acc k ((k converse-fcns) v))
+              acc))
           {}
           (seq vector)))
 
@@ -45,11 +47,11 @@
            (and (> (:m vector) 0)
                 (> (:c vector) (:m vector))))))
 
-(defn valid?
-  "Checks if a vector plays by the rules"
-  [vector]
-  (and (loose-valid? vector)
-       (loose-valid? (converse vector))))
+(defn equals?
+  [vector-a vector-b]
+  (and (= (:m vector-a) (:m vector-b))
+       (= (:c vector-a) (:c vector-b))
+       (= (:b vector-a) (:b vector-b))))
 
 (defn goal?
   "Checks if a vector is the goal: <0,0,0>"
@@ -58,21 +60,52 @@
        (= (:c vector) 0)
        (= (:b vector) 0)))
 
-(defn add
+;(defn backtracks?
+  ;[vector]
+  ;(and (contains? vector :parent)
+       ;(contains? (get vector :parent) :parent)
+       ;(equals? vector (get (get vector :parent) :parent))))
+
+(defn backtracks?
+  [vector]
+  (loop [vect vector]
+    (let [parent (:parent vect)]
+      (if (= parent nil)
+        false ; you've reached the end of the list
+        (if (equals? vector parent)
+          true
+          (recur parent))))))
+
+(defn ^:dynamic valid?
+  "Checks if a vector plays by the rules"
+  [vector]
+  (and (loose-valid? vector)
+       (loose-valid? (converse vector))
+       (not (backtracks? vector))))
+
+(defn ^:dynamic add
   "Computes the sum of two vectors"
   [vector-a vector-b]
-  (reduce (fn [acc [k v]]
-            (assoc acc k (+ v (k vector-b))))
-          {}
-          vector-a))
+  (assoc 
+    (reduce (fn [acc [k v]]
+              (if (contains? converse-fcns k)
+                (assoc acc k (+ v (k vector-b)))
+                acc))
+            {}
+            vector-a)
+    :parent vector-a))
 
-(defn sub
+(defn ^:dynamic sub
   "Computes the subtraction of two vectors"
   [vector-a vector-b]
-  (reduce (fn [acc [k v]]
-            (assoc acc k (- v (k vector-b))))
-          {}
-          vector-a))
+  (assoc
+    (reduce (fn [acc [k v]]
+              (if (contains? converse-fcns k)
+                (assoc acc k (- v (k vector-b)))
+                acc))
+            {}
+            vector-a)
+    :parent vector-a))
 
 ; also, you can test equality with:
 ; (= <vector-a> <vector-b>)
@@ -85,14 +118,14 @@
         (make 0 2 1)
         (make 1 1 1)))
 
-(defn- add-or-sub
+(defn ^:dynamic add-or-sub
   "Add or subtract depending on the boat position of the first vector"
   [vector-a vector-b]
   (if (= (:b vector-a) 0)
     (add vector-a vector-b)
     (sub vector-a vector-b)))
 
-(defn get-actions
+(defn ^:dynamic get-actions
   "Get the possible actions available to a vector"
   [vector]
   (filter valid?
