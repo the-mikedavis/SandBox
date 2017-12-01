@@ -14,5 +14,8 @@ hello world script and some command line operations.
 - [x] Ruby
 - [x] Go
 - [x] Brainfuck
+- [x] C#
+- [x] F#
+- [x] Clojure
 - [ ] Swift
 - [ ] Scala
