@@ -1,0 +1,6 @@
+[package]
+name = "rust_noob"
+version = "0.1.0"
+authors = ["Michael Davis <rubiksmaster65@yahoo.com>"]
+
+[dependencies]
