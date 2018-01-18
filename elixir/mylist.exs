@@ -25,4 +25,11 @@ defmodule MyList do
 
   def span(to, to), do: [to]
   def span(from, to), do: [ from | span(from + 1, to) ]
+
+  def primes(n) when is_number(n) and n >= 2 do
+    all = span(2, n)
+    nons = for n <- all, c <- all, c <= :math.sqrt(n), rem(n, c) == 0,
+      do: n
+    all -- nons
+  end
 end

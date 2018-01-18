@@ -56,4 +56,7 @@ defmodule MyEnum do
     [ head | flatten(tail) ]
   end
 
+
+  def primes(n) do
+  end
 end
