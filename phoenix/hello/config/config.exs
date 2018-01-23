@@ -10,10 +10,10 @@ config :hello,
   ecto_repos: [Hello.Repo]
 
 # Configures the endpoint
-config :hello, HelloWeb.Endpoint,
+config :hello, Hello.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "Y+dNxu5/Nm5tapU7hZ3vdpDlCDulyv6SPeG1KYCTVP04Ll2jzqaLeM7d2DcBK5aa",
-  render_errors: [view: HelloWeb.ErrorView, accepts: ~w(html json)],
+  secret_key_base: "8SADDobcLJUizErddOy2GGg9e48f3uYFezOTbr8LmlmHWQx2NMjgPoLNyGrsVNfC",
+  render_errors: [view: Hello.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Hello.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
