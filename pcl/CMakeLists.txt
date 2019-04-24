@@ -11,3 +11,6 @@ add_definitions(${PCL_DEFINITIONS})
 
 add_executable(triangulation triangulation.cpp)
 target_link_libraries(triangulation ${PCL_LIBRARIES})
+
+add_executable(normal normal.cpp)
+target_link_libraries(normal ${PCL_LIBRARIES})
