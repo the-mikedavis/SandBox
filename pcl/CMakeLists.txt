@@ -20,3 +20,6 @@ target_link_libraries(kdtree_search ${PCL_LIBRARIES})
 
 add_executable(projection projection.cpp)
 target_link_libraries(projection ${PCL_LIBRARIES})
+
+add_executable(segmentation segmentation.cpp)
+target_link_libraries(segmentation ${PCL_LIBRARIES})
