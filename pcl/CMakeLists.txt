@@ -14,3 +14,6 @@ target_link_libraries(triangulation ${PCL_LIBRARIES})
 
 add_executable(normal normal.cpp)
 target_link_libraries(normal ${PCL_LIBRARIES})
+
+add_executable(kdtree_search kdtree_search.cpp)
+target_link_libraries(kdtree_search ${PCL_LIBRARIES})
